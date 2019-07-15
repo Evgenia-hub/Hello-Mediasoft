@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 //alert('Hello Mediasoft!');
 
+=======
+>>>>>>> 39902a6f43f6c9657d8e26842243d75ab1168d90
 function calculator(){
 	let a = +prompt('Введите число', '');
 	let b = +prompt('Введите число','');
@@ -18,4 +21,9 @@ function calculator(){
 		}
 		alert(operation);		
 }
+<<<<<<< HEAD
 calculator();
+=======
+calculator();
+      
+>>>>>>> 39902a6f43f6c9657d8e26842243d75ab1168d90
