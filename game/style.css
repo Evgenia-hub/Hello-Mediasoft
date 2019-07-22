@@ -1,0 +1,60 @@
+* {
+	box-sizing: border-box;
+}
+.game {
+	width: 300px;
+	height: 300px;
+	display: flex;
+	flex-wrap: wrap;
+	margin: 25px auto 0;
+}
+.cell {
+	width: 33.33%;
+	height: 33.33%;
+ 	border-right: 4px solid green;
+ 	border-bottom: 4px solid green;
+}
+.cell:nth-child(3n){
+	border-right: none;
+
+}
+.cell:nth-child(n+7){
+	border-bottom: none;
+
+}
+.cross {
+	position: relative;
+}
+.cross::before{
+	position: absolute;
+	content: '';
+	width: 100%;
+	height: 4px;
+	background-color: black;
+	top: 50%;
+    transform: translateY(-50%) rotate(45deg);
+
+}
+.cross::after{
+	position: absolute;
+	content: '';
+	width: 100%;
+	height: 4px;
+	background-color: black;
+	top: 50%;
+    transform: translateY(-50%) rotate(-45deg);
+}
+.ring {
+	position: relative;
+}
+.ring::before{
+	position: absolute;
+    content: '';
+    width: 75%;
+    height: 75%;
+    border: 4px solid red;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
