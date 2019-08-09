@@ -1,4 +1,7 @@
 const container = document.querySelector('.game');
+const banner = document.querySelector('.banner');
+const restart = document.querySelector('.restart');
+const winner = document.querySelector('.winner');
 function TicTacToe(){}
   
 TicTacToe.prototype.gameField = function(){
@@ -40,6 +43,26 @@ TicTacToe.prototype.index = function(){
   });
   return [Ind1, Ind2]; 
 }
+TicTacToe.prototype.gameOver = function(value){
+ winner.innerHTML = value;
+  banner.classList.remove("hidden");
+}
+TicTacToe.prototype.restart = function(){
+  const allCell = [].slice.call(container.querySelectorAll('.cell'));
+  allCell.forEach(function(item){
+  item.classList.remove("cross");
+  item.classList.remove("ring");
+  item.classList.remove("checked");
+    banner.classList.add("hidden");
+  });
+}
+TicTacToe.prototype.drawCheck = function(){
+  const allCell = [].slice.call(container.querySelectorAll('.cell')); 
+  return allCell.every(function(item){
+   return item.classList.contains("checked"); 
+  });
+  console.log(allCell);
+}
 TicTacToe.prototype.combination = function(){
   let obj = this;
   let finishCombination = [
@@ -54,11 +77,14 @@ TicTacToe.prototype.combination = function(){
   ];
   finishCombination.forEach(function(item){
     if(obj.compare(item, obj.index()[0]) === 3){
-     console.log('Выиграли крестики'); 
+     obj.gameOver('Выиграли Крестики');
     } else if(obj.compare(item, obj.index()[1]) === 3){
-     console.log('Выиграли нолики'); 
+     obj.gameOver('Выиграли Нолики');
+    } else if(obj.drawCheck()) {
+     obj.gameOver('Ничья');
     } 
   });
+  console.log(obj.drawCheck());
 }
 
 TicTacToe.prototype.compare = function(arr, arr2){
@@ -76,3 +102,6 @@ const game = new TicTacToe();
 game.gameField(); 
 game.step();
 game.combination();
+restart.addEventListener('click',function(){
+  game.restart();
+});
